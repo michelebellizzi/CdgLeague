@@ -1,0 +1,216 @@
+// Variabili per i colori e le ombre
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #e74c3c;
+$success-color: #2ecc71;
+$danger-color: #e74c3c;
+$warning-color: #f1c40f;
+$light-color: #f5f6fa;
+$dark-color: #2c3e50;
+$border-radius: 12px;
+$box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  padding: 2rem;
+
+  .login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    animation: slideIn 0.5s ease-out;
+    transition: $transition;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+
+      h1 {
+        color: $dark-color;
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      p {
+        color: rgba($dark-color, 0.7);
+        font-size: 1.1rem;
+        font-weight: 300;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.8rem;
+        color: $dark-color;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        border: 2px solid rgba($dark-color, 0.1);
+        border-radius: $border-radius;
+        transition: $transition;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+
+        &:focus {
+          border-color: $secondary-color;
+          box-shadow: 0 0 0 4px rgba($secondary-color, 0.1);
+          outline: none;
+        }
+
+        &::placeholder {
+          color: rgba($dark-color, 0.4);
+        }
+      }
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      color: white;
+      border: none;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: $transition;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba($primary-color, 0.3);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        background: linear-gradient(135deg, desaturate($primary-color, 30%), desaturate($secondary-color, 30%));
+      }
+    }
+
+    .register-link {
+      text-align: center;
+      color: rgba($dark-color, 0.7);
+      font-size: 0.95rem;
+      font-weight: 500;
+
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+        font-weight: 600;
+        transition: $transition;
+        margin-left: 0.5rem;
+
+        &:hover {
+          color: $primary-color;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .error-message {
+      background: rgba($danger-color, 0.1);
+      color: $danger-color;
+      padding: 1rem;
+      border-radius: $border-radius;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid rgba($danger-color, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      &::before {
+        content: '⚠️';
+      }
+    }
+  }
+}
+
+// Animazione di entrata
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Media queries per la responsività
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+
+    .login-card {
+      padding: 2rem;
+
+      .login-header {
+        margin-bottom: 2rem;
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        label {
+          font-size: 0.9rem;
+        }
+
+        .form-control {
+          padding: 0.9rem 1rem;
+        }
+      }
+
+      .btn-login {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+      }
+    }
+  }
+} 

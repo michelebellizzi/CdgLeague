@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Classifica</h2>
+    </div>
+    <div class="card-body">
+      <!-- Desktop View -->
+      <div class="standings-table desktop-view">
+        <div class="table-header">
+          <div class="col-pos">Pos</div>
+          <div class="col-team">Squadra</div>
+          <div class="col-stat">P</div>
+          <div class="col-stat">V</div>
+          <div class="col-stat">P</div>
+          <div class="col-stat">S</div>
+          <div class="col-stat">DR</div>
+          <div class="col-stat">Pts</div>
+        </div>
+
+        <div *ngIf="teams$ | async as teams">
+          <div *ngFor="let team of teams; let i = index" class="table-row" [ngClass]="getPositionClass(i + 1)">
+            <div class="col-pos">{{i + 1}}</div>
+            <div class="col-team">
+              <div class="team-info">
+                <img [src]="team.logo" [alt]="team.name" class="team-logo">
+                <span class="team-name">{{team.name}}</span>
+              </div>
+            </div>
+            <div class="col-stat">{{team.played || 0}}</div>
+            <div class="col-stat">{{team.won || 0}}</div>
+            <div class="col-stat">{{team.draws || 0}}</div>
+            <div class="col-stat">{{team.lost || 0}}</div>
+            <div class="col-stat">{{team.goalsFor || 0}} - {{team.goalsAgainst || 0}}</div>
+            <div class="col-stat">{{team.points || 0}}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile View -->
+      <div class="standings-table mobile-view">
+        <div *ngIf="teams$ | async as teams">
+          <div *ngFor="let team of teams; let i = index" class="table-row" [ngClass]="getPositionClass(i + 1)">
+            <div class="mobile-row-header">
+              <div class="col-pos">{{i + 1}}</div>
+              <div class="col-team">
+                <div class="team-info">
+                  <img [src]="team.logo" [alt]="team.name" class="team-logo">
+                  <span class="team-name">{{team.name}}</span>
+                </div>
+              </div>
+              <div class="col-stat points">{{team.points || 0}}</div>
+            </div>
+            <div class="mobile-row-stats">
+              <div class="stat-item">
+                <span class="stat-label">Partite:</span>
+                <span class="stat-value">{{team.played || 0}}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Vittorie:</span>
+                <span class="stat-value">{{team.won || 0}}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Pareggi:</span>
+                <span class="stat-value">{{team.draws || 0}}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Sconfitte:</span>
+                <span class="stat-value">{{team.lost || 0}}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Differenza Reti:</span>
+                <span class="stat-value">{{team.goalsFor || 0}} - {{team.goalsAgainst || 0}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,255 @@
+// Variabili
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #e74c3c;
+$background-color: #f5f6fa;
+$text-color: #2c3e50;
+$border-radius: 12px;
+$box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin card-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.card-header {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: white;
+  padding: 1.5rem;
+  border-bottom: none;
+
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.card-body {
+  padding: 0;
+}
+
+// Nascondi la vista mobile su desktop
+.mobile-view {
+  display: none;
+}
+
+.standings-table {
+  width: 100%;
+  background: white;
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 1rem;
+    background: linear-gradient(to right, $primary-color, $secondary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    div {
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .col-team {
+      text-align: left;
+      padding-left: 1rem;
+    }
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    align-items: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(52, 152, 219, 0.05);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.first {
+      background-color: rgba(255, 215, 0, 0.1);
+      .col-pos { 
+        color: #FFD700;
+        font-weight: 700;
+      }
+    }
+
+    &.second {
+      background-color: rgba(192, 192, 192, 0.1);
+      .col-pos { 
+        color: #C0C0C0;
+        font-weight: 700;
+      }
+    }
+
+    &.third {
+      background-color: rgba(205, 127, 50, 0.1);
+      .col-pos { 
+        color: #CD7F32;
+        font-weight: 700;
+      }
+    }
+
+    .team-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-left: 1rem;
+
+      .team-logo {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .team-name {
+        font-weight: 600;
+        font-size: 1rem;
+        color: $text-color;
+      }
+
+      &:hover .team-logo {
+        transform: scale(1.1);
+      }
+    }
+
+    .col-stat {
+      text-align: center;
+      font-weight: 600;
+      color: $text-color;
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+
+    .col-pos {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: $text-color;
+      padding: 0.5rem;
+    }
+  }
+}
+
+// Media queries per la responsività
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .card-header {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  // Nascondi la vista desktop su mobile
+  .desktop-view {
+    display: none;
+  }
+
+  // Mostra la vista mobile
+  .mobile-view {
+    display: block;
+
+    .table-row {
+      display: block;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      @include card-hover;
+
+      .mobile-row-header {
+        display: grid;
+        grid-template-columns: 50px 1fr 70px;
+        align-items: center;
+        margin-bottom: 0.8rem;
+
+        .team-info {
+          gap: 0.8rem;
+          padding-left: 0;
+
+          .team-logo {
+            width: 35px;
+            height: 35px;
+          }
+
+          .team-name {
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        .points {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: $secondary-color;
+        }
+      }
+
+      .mobile-row-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+
+        .stat-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.4rem 0;
+
+          .stat-label {
+            color: #7f8c8d;
+            font-weight: 500;
+          }
+
+          .stat-value {
+            font-weight: 600;
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+}

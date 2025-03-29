@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Crea Account Amministratore</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="displayName" class="form-label">Nome Completo</label>
+              <input type="text" class="form-control" id="displayName" formControlName="displayName">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+            <div class="alert alert-danger" *ngIf="error">
+              {{error}}
+            </div>
+            <div class="alert alert-success" *ngIf="success">
+              {{success}}
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!adminForm.valid">
+              Crea Admin
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,73 @@
+.calendar-grid {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #f8f9fa;
+  padding: 1rem 0;
+  text-align: center;
+  font-weight: 500;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: #dee2e6;
+}
+
+.day {
+  background: #fff;
+  min-height: 120px;
+  padding: 0.5rem;
+}
+
+.day-number {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.matches {
+  font-size: 0.8rem;
+}
+
+.match-item {
+  background: #f8f9fa;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #dee2e6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .match-time {
+    color: #6c757d;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .match-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    .home-team, .away-team {
+      font-weight: 500;
+    }
+
+    .vs {
+      color: #6c757d;
+      font-size: 0.75rem;
+    }
+  }
+}
+

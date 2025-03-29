@@ -1,0 +1,58 @@
+.scorers-table {
+  .table-header {
+    display: grid;
+    grid-template-columns: 50px 2fr 1fr 1fr;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    font-weight: 500;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 50px 2fr 1fr 1fr;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    align-items: center;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.first {
+      background-color: rgba(255, 215, 0, 0.1);
+    }
+
+    &.second {
+      background-color: rgba(192, 192, 192, 0.1);
+    }
+
+    &.third {
+      background-color: rgba(205, 127, 50, 0.1);
+    }
+
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .player-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .player-name {
+        font-weight: 500;
+      }
+    }
+
+    .col-goals {
+      text-align: center;
+      font-weight: 600;
+      color: #28a745;
+    }
+  }
+}
+

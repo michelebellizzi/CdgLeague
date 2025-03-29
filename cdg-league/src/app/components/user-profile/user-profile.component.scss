@@ -1,0 +1,100 @@
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .team-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+
+  .stat-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #28a745;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #6c757d;
+    }
+  }
+}
+
+.match-item {
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .match-date {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .match-teams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .score {
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+  }
+
+  .match-result {
+    text-align: center;
+    font-weight: 500;
+    padding: 0.25rem;
+    border-radius: 4px;
+
+    &.Vittoria {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: #28a745;
+    }
+
+    &.Pareggio {
+      background-color: rgba(255, 193, 7, 0.1);
+      color: #ffc107;
+    }
+
+    &.Sconfitta {
+      background-color: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
+    }
+
+    &.Da giocare {
+      background-color: rgba(108, 117, 125, 0.1);
+      color: #6c757d;
+    }
+  }
+}
+

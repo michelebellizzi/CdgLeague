@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>No Fenomeni - No Sentaioli</h1>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" 
+               id="email" 
+               class="form-control" 
+               formControlName="email" 
+               placeholder="Inserisci la tua email">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" 
+               id="password" 
+               class="form-control" 
+               formControlName="password" 
+               placeholder="Inserisci la tua password">
+      </div>
+
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+
+      <button type="submit" 
+              class="btn-login" 
+              [disabled]="!loginForm.valid || isLoading">
+        {{ isLoading ? 'Accesso in corso...' : 'Accedi' }}
+      </button>
+
+      <div class="register-link">
+        Non hai un account? 
+        <a routerLink="/register">Registrati</a>
+      </div>
+    </form>
+  </div>
+</div> 

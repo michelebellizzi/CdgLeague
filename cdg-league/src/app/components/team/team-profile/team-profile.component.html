@@ -1,0 +1,114 @@
+<div class="team-profile-container">
+  <div class="team-header">
+    <div class="team-info">
+      <img [src]="team.logo" [alt]="team.name" class="team-logo">
+      <div class="team-details">
+        <h1>{{ team.name }}</h1>
+        <div class="team-stats">
+          <div class="stat-item">
+            <i class="fas fa-trophy"></i>
+            <span>{{ team.stats.position }}° posizione</span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-futbol"></i>
+            <span>{{ team.stats.matches }} partite</span>
+          </div>
+          <div class="stat-item">
+            <i class="fas fa-star"></i>
+            <span>{{ team.stats.points }} punti</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="team-colors">
+      <div class="color-item">
+        <div class="color-dot" [style.background-color]="team.colors.primary"></div>
+        <span>Primario</span>
+      </div>
+      <div class="color-item">
+        <div class="color-dot" [style.background-color]="team.colors.secondary"></div>
+        <span>Secondario</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-content">
+    <div class="team-matches">
+      <h2>Ultime Partite</h2>
+      <div class="match-list">
+        <div class="match-item" *ngFor="let match of team.recentMatches">
+          <div class="match-date">{{ match.date | date:'dd/MM/yyyy' }}</div>
+          <div class="match-teams">
+            <div class="team">
+              <img [src]="match.homeTeam.logo" [alt]="match.homeTeam.name">
+              <span>{{ match.homeTeam.name }}</span>
+            </div>
+            <div class="score">{{ match.homeScore }} - {{ match.awayScore }}</div>
+            <div class="team">
+              <span>{{ match.awayTeam.name }}</span>
+              <img [src]="match.awayTeam.logo" [alt]="match.awayTeam.name">
+            </div>
+          </div>
+          <div class="match-info">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>{{ match.venue }}</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-users"></i>
+              <span>{{ match.attendance }} spettatori</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-info-card">
+      <div class="info-card">
+        <h3>Statistiche Stagione</h3>
+        <div class="info-item">
+          <span class="info-label">Partite Giocate</span>
+          <span class="info-value">{{ team.stats.matches }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Vittorie</span>
+          <span class="info-value">{{ team.stats.wins }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Pareggi</span>
+          <span class="info-value">{{ team.stats.draws }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Sconfitte</span>
+          <span class="info-value">{{ team.stats.losses }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Gol Fatti</span>
+          <span class="info-value">{{ team.stats.goalsFor }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Gol Subiti</span>
+          <span class="info-value">{{ team.stats.goalsAgainst }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Differenza Reti</span>
+          <span class="info-value">{{ team.stats.goalDifference }}</span>
+        </div>
+      </div>
+
+      <div class="squad-card">
+        <h3>Rosa</h3>
+        <div class="player-list">
+          <div class="player-item" *ngFor="let player of team.squad">
+            <img [src]="player.photo" [alt]="player.name">
+            <div class="player-info">
+              <div class="player-name">{{ player.name }}</div>
+              <div class="player-role">{{ player.role }}</div>
+            </div>
+            <div class="player-number">{{ player.number }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

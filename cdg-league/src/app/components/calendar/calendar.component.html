@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="calendar-header mb-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>{{getMonthName()}}</h2>
+      <div class="btn-group">
+        <button class="btn btn-outline-primary" (click)="previousMonth()">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="btn btn-outline-primary" (click)="nextMonth()">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="weekdays">
+      <div>Lun</div>
+      <div>Mar</div>
+      <div>Mer</div>
+      <div>Gio</div>
+      <div>Ven</div>
+      <div>Sab</div>
+      <div>Dom</div>
+    </div>
+
+    <div class="days">
+      <div *ngFor="let day of getDaysInMonth()" class="day">
+        <div class="day-number">{{day.getDate()}}</div>
+        <div class="matches" *ngIf="matches$ | async as matches">
+          <div *ngFor="let match of getMatchesForDay(day, matches)" class="match-item">
+            <div class="match-time">{{match.date | date:'HH:mm'}}</div>
+            <div class="match-teams">
+              <span class="home-team">{{match.homeTeamId | teamName}}</span>
+              <span class="vs">vs</span>
+              <span class="away-team">{{match.awayTeamId | teamName}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="home-container">
+  <section class="hero-section">
+    <h1>Benvenuto nella CDG League</h1>
+    <p>La tua lega calcistica amatoriale</p>
+  </section>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <i class="fas fa-users stat-icon"></i>
+      <div class="stat-value">{{ totalPlayers }}</div>
+      <div class="stat-label">Giocatori Totali</div>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-trophy stat-icon"></i>
+      <div class="stat-value">{{ totalTeams }}</div>
+      <div class="stat-label">Squadre</div>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-futbol stat-icon"></i>
+      <div class="stat-value">{{ totalMatches }}</div>
+      <div class="stat-label">Partite Giocate</div>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-star stat-icon"></i>
+      <div class="stat-value">{{ totalGoals }}</div>
+      <div class="stat-label">Gol Segnati</div>
+    </div>
+  </div>
+
+  <div class="recent-matches">
+    <h2>Ultime Partite</h2>
+    <div class="match-card" *ngFor="let match of recentMatches">
+      <div class="match-teams">
+        <div class="team">
+          <img [src]="match.homeTeam.logo" [alt]="match.homeTeam.name">
+          <span>{{ match.homeTeam.name }}</span>
+        </div>
+        <div class="score">{{ match.homeScore }} - {{ match.awayScore }}</div>
+        <div class="team">
+          <span>{{ match.awayTeam.name }}</span>
+          <img [src]="match.awayTeam.logo" [alt]="match.awayTeam.name">
+        </div>
+      </div>
+      <div class="match-info">
+        {{ match.date | date:'dd/MM/yyyy HH:mm' }} - {{ match.venue }}
+      </div>
+    </div>
+  </div>
+
+  <div class="top-scorers">
+    <h2>Capocannonieri</h2>
+    <div class="scorer-card" *ngFor="let scorer of topScorers">
+      <img [src]="scorer.photo" [alt]="scorer.name">
+      <div class="scorer-info">
+        <div class="scorer-name">{{ scorer.name }}</div>
+        <div class="scorer-team">{{ scorer.team }}</div>
+      </div>
+      <div class="scorer-goals">{{ scorer.goals }} gol</div>
+    </div>
+  </div>
+</div>

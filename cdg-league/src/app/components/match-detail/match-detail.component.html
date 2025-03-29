@@ -1,0 +1,86 @@
+<div class="container mt-4">
+  <div *ngIf="match$ | async as match">
+    <div class="card">
+      <div class="card-header">
+        <div class="match-date">{{match.date | date:'dd/MM/yyyy HH:mm'}}</div>
+        <div class="matchday">Giornata {{match.matchday}}</div>
+      </div>
+      <div class="card-body">
+        <div class="match-content">
+          <!-- Squadre e Risultato -->
+          <div class="teams-container">
+            <div *ngIf="homeTeam$ | async as homeTeam" class="team home-team">
+              <img [src]="homeTeam.logo" [alt]="homeTeam.name" class="team-logo">
+              <h3>{{homeTeam.name}}</h3>
+            </div>
+            <div class="score-container">
+              <div class="score">
+                <span class="home-score">{{match.homeScore || 0}}</span>
+                <span class="separator">-</span>
+                <span class="away-score">{{match.awayScore || 0}}</span>
+              </div>
+              <div class="match-status" *ngIf="!match.completed">
+                Da giocare
+              </div>
+            </div>
+            <div *ngIf="awayTeam$ | async as awayTeam" class="team away-team">
+              <img [src]="awayTeam.logo" [alt]="awayTeam.name" class="team-logo">
+              <h3>{{awayTeam.name}}</h3>
+            </div>
+          </div>
+
+          <!-- Statistiche Partita -->
+          <div class="match-stats" *ngIf="match.completed">
+            <div class="stat-row">
+              <div class="stat-item">
+                <div class="stat-value">{{match.homePossession || 0}}%</div>
+                <div class="stat-label">Possesso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{match.homeShots || 0}}</div>
+                <div class="stat-label">Tiri</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{match.homeShotsOnTarget || 0}}</div>
+                <div class="stat-label">Tiri in Porta</div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-item">
+                <div class="stat-value">{{match.awayPossession || 0}}%</div>
+                <div class="stat-label">Possesso</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{match.awayShots || 0}}</div>
+                <div class="stat-label">Tiri</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{match.awayShotsOnTarget || 0}}</div>
+                <div class="stat-label">Tiri in Porta</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Marcatori -->
+          <div class="scorers-section" *ngIf="match.completed">
+            <h4>Marcatori</h4>
+            <div *ngIf="scorers$ | async as scorers">
+              <div *ngFor="let scorer of match.scorers" class="scorer-item">
+                <span class="scorer-name">{{getScorerName(scorer.playerId, scorers)}}</span>
+                <span class="scorer-goals">{{scorer.goals}} gol</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Man of the Match -->
+          <div class="motm-section" *ngIf="match.completed && match.motm">
+            <h4>Man of the Match</h4>
+            <div *ngIf="scorers$ | async as scorers" class="motm-player">
+              {{getScorerName(match.motm, scorers)}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

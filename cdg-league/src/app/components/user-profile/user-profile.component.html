@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Profilo Utente -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          <div *ngIf="user$ | async as user">
+            <img [src]="user.photoURL" [alt]="user.displayName" class="profile-photo mb-3">
+            <h3>{{user.displayName}}</h3>
+            <p class="text-muted">{{user.email}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistiche Squadra -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4>Statistiche Squadra</h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="team$ | async as team">
+            <div class="team-info mb-3">
+              <img [src]="team.logo" [alt]="team.name" class="team-logo">
+              <h5>{{team.name}}</h5>
+            </div>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">{{team.points || 0}}</div>
+                <div class="stat-label">Punti</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{team.won || 0}}</div>
+                <div class="stat-label">Vittorie</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{team.drawn || 0}}</div>
+                <div class="stat-label">Pareggi</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">{{team.lost || 0}}</div>
+                <div class="stat-label">Sconfitte</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ultime Partite -->
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h4>Le Mie Partite</h4>
+        </div>
+        <div class="card-body">
+          <div *ngIf="matches$ | async as matches">
+            <div *ngIf="user$ | async as user">
+              <div *ngFor="let match of matches" class="match-item">
+                <div class="match-date">{{match.date | date:'dd/MM/yyyy HH:mm'}}</div>
+                <div class="match-teams">
+                  <span class="home-team">{{match.homeTeamId | teamName}}</span>
+                  <span class="score">{{getMatchScore(match)}}</span>
+                  <span class="away-team">{{match.awayTeamId | teamName}}</span>
+                </div>
+                <div class="match-result" [ngClass]="getMatchResult(match, user.uid)">
+                  {{getMatchResult(match, user.uid)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

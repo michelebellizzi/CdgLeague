@@ -1,0 +1,88 @@
+<div class="match-detail-container">
+  <div class="match-header">
+    <div class="match-date">
+      {{ match.date | date:'dd/MM/yyyy HH:mm' }}
+    </div>
+    <div class="match-teams">
+      <div class="team">
+        <img [src]="match.homeTeam.logo" [alt]="match.homeTeam.name">
+        <div class="team-name">{{ match.homeTeam.name }}</div>
+      </div>
+      <div class="score">{{ match.homeScore }} - {{ match.awayScore }}</div>
+      <div class="team">
+        <img [src]="match.awayTeam.logo" [alt]="match.awayTeam.name">
+        <div class="team-name">{{ match.awayTeam.name }}</div>
+      </div>
+    </div>
+    <div class="match-info">
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>{{ match.venue }}</span>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-users"></i>
+        <span>{{ match.attendance }} spettatori</span>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-user-tie"></i>
+        <span>{{ match.referee }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-content">
+    <div class="match-events">
+      <h2>Cronaca Partita</h2>
+      <div class="event-list">
+        <div class="event-item" *ngFor="let event of match.events">
+          <div class="event-time">{{ event.minute }}'</div>
+          <div class="event-icon">
+            <i [class]="getEventIcon(event.type)"></i>
+          </div>
+          <div class="event-details">
+            <div class="event-player">{{ event.player.name }}</div>
+            <div class="event-team">{{ event.team.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-stats">
+      <div class="stats-card">
+        <h3>Statistiche Partita</h3>
+        <div class="stat-item">
+          <span class="stat-label">Possesso Palla</span>
+          <span class="stat-value">{{ match.stats.possession.home }}% - {{ match.stats.possession.away }}%</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Tiri in Porta</span>
+          <span class="stat-value">{{ match.stats.shotsOnTarget.home }} - {{ match.stats.shotsOnTarget.away }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Tiri Totali</span>
+          <span class="stat-value">{{ match.stats.totalShots.home }} - {{ match.stats.totalShots.away }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Angoli</span>
+          <span class="stat-value">{{ match.stats.corners.home }} - {{ match.stats.corners.away }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Falli</span>
+          <span class="stat-value">{{ match.stats.fouls.home }} - {{ match.stats.fouls.away }}</span>
+        </div>
+      </div>
+
+      <div class="stats-card">
+        <h3>Formazioni</h3>
+        <div class="stat-item">
+          <span class="stat-label">{{ match.homeTeam.name }}</span>
+          <span class="stat-value">{{ match.homeFormation }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">{{ match.awayTeam.name }}</span>
+          <span class="stat-value">{{ match.awayFormation }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

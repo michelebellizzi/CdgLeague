@@ -1,0 +1,120 @@
+.match-content {
+  .teams-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .team {
+      text-align: center;
+      flex: 1;
+
+      .team-logo {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+    }
+
+    .score-container {
+      text-align: center;
+      padding: 0 2rem;
+
+      .score {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+
+        .separator {
+          margin: 0 0.5rem;
+        }
+      }
+
+      .match-status {
+        color: #6c757d;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .match-stats {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .stat-item {
+        text-align: center;
+        flex: 1;
+
+        .stat-value {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #28a745;
+        }
+
+        .stat-label {
+          font-size: 0.875rem;
+          color: #6c757d;
+        }
+      }
+    }
+  }
+
+  .scorers-section, .motm-section {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+
+    h4 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .scorer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .scorer-name {
+      font-weight: 500;
+    }
+
+    .scorer-goals {
+      color: #28a745;
+      font-weight: 600;
+    }
+  }
+
+  .motm-player {
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #ffc107;
+  }
+}
+

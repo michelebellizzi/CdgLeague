@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h2>Marcatori</h2>
+    </div>
+    <div class="card-body">
+      <div class="scorers-table">
+        <div class="table-header">
+          <div class="col-pos">Pos</div>
+          <div class="col-player">Giocatore</div>
+          <div class="col-team">Squadra</div>
+          <div class="col-goals">Gol</div>
+        </div>
+
+        <div *ngIf="teams$ | async as teams">
+          <div *ngIf="players$ | async as players">
+            <div *ngFor="let player of players; let i = index" class="table-row" [ngClass]="getPositionClass(i + 1)">
+              <div class="col-pos">{{i + 1}}</div>
+              <div class="col-player">
+                <div class="player-info">
+                  <img [src]="player.photoURL" [alt]="player.displayName" class="player-photo">
+                  <span class="player-name">{{player.displayName}}</span>
+                </div>
+              </div>
+              <div class="col-team">{{getTeamName(player.teamId, teams)}}</div>
+              <div class="col-goals">{{player.goals || 0}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

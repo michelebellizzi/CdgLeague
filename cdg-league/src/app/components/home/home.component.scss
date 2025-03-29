@@ -1,0 +1,275 @@
+// Variabili
+$primary-color: #4a90e2;
+$secondary-color: #2c3e50;
+$accent-color: #e74c3c;
+$background-color: #f8f9fa;
+$text-color: #2c3e50;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba($primary-color, 0.1); // Leggero cambiamento di colore al passaggio del mouse
+  }
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px); // Aumento il blur per un effetto vetro più marcato
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-container {
+  padding: 2rem;
+  background-color: $background-color;
+  min-height: 100vh;
+
+  .hero-section {
+    text-align: center;
+    padding: 5rem 0;
+    background: linear-gradient(135deg, $primary-color, #ff6f61); /* Gradiente vivace */
+    color: white;
+    border-radius: $border-radius;
+    margin-bottom: 3rem;
+    @include glass-effect;
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: $border-radius;
+      box-shadow: $box-shadow;
+      text-align: center;
+      @include card-hover;
+
+      .stat-icon {
+        font-size: 3rem; /* Icone ingrandite per maggiore visibilità */
+        color: $primary-color;
+        margin-bottom: 1rem;
+      }
+
+      .stat-value {
+        font-size: 2.2rem; /* Valore ingrandito per impatto */
+        font-weight: 700;
+        color: $secondary-color;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: $text-color;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .recent-matches {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2.5rem;
+    box-shadow: $box-shadow;
+    margin-bottom: 3rem;
+    @include glass-effect;
+
+    h2 {
+      color: $secondary-color;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .match-card {
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .match-teams {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+
+        .team {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+          }
+        }
+
+        .score {
+          font-weight: 700;
+          color: $accent-color;
+        }
+      }
+
+      .match-info {
+        font-size: 1rem;
+        color: $text-color;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .top-scorers {
+    background: white;
+    border-radius: $border-radius;
+    padding: 2.5rem;
+    box-shadow: $box-shadow;
+
+    h2 {
+      color: $secondary-color;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .scorer-card {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: rgba($primary-color, 0.05);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-right: 1rem;
+      }
+
+      .scorer-info {
+        flex-grow: 1;
+
+        .scorer-name {
+          font-weight: 600;
+          color: $secondary-color;
+        }
+
+        .scorer-team {
+          font-size: 1rem;
+          color: $text-color;
+          opacity: 0.8;
+        }
+      }
+
+      .scorer-goals {
+        font-weight: 700;
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+// Media queries per la responsività
+@media (max-width: 768px) {
+  .home-container {
+    padding: 1rem;
+
+    .hero-section {
+      padding: 2rem 1rem;
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .recent-matches,
+    .top-scorers {
+      padding: 1.5rem;
+    }
+  }
+}
+
+.match-item {
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa;
+
+  &:hover {
+    background-color: #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .team-name {
+    font-weight: 500;
+  }
+
+  .vs {
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  .date {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+}
+
+.team-item {
+  padding: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .team-name {
+    font-weight: 500;
+  }
+
+  .points {
+    font-weight: 600;
+    color: #28a745;
+  }
+}

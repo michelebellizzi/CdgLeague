@@ -1,0 +1,16 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "./dist/cdg-league/server",
+      "types": ["node"]
+    },
+    "include": [
+      "src/**/*.ts",
+      "src/main.server.ts"
+    ],
+    "exclude": [
+      "src/test.ts",
+      "src/**/*.spec.ts"
+    ]
+  }
+  
