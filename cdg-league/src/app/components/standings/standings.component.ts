@@ -22,10 +22,19 @@ export class StandingsComponent implements OnInit {
 
   private loadData(): void {
     this.teams$ = this.teamService.getTeams().pipe(
-      map(teams => teams.sort((a, b) => (b.points || 0) - (a.points || 0)))
+      map(teams => teams.sort((a, b) => {
+        // Confronto per punti
+        const pointsDiff = (b.points || 0) - (a.points || 0);
+        if (pointsDiff !== 0) {
+          return pointsDiff; // Se i punti sono diversi, usa questo ordinamento
+        }
+        // Confronto per differenza reti (goal fatti - goal subiti)
+        const goalDiffA = (a.goalsFor || 0) - (a.goalsAgainst || 0);
+        const goalDiffB = (b.goalsFor || 0) - (b.goalsAgainst || 0);
+        return goalDiffB - goalDiffA; // Ordina in base alla differenza reti
+      }))
     );
-  }
-
+}
   getPositionClass(position: number): string {
     if (position === 1) return 'first';
     if (position === 2) return 'second';

@@ -6,6 +6,7 @@ import { TeamService } from '../../services/team.service';
 import { Match } from '../../models/match.model';
 import { Team } from '../../models/team.model';
 import { Observable, map } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -214,7 +215,7 @@ import { Observable, map } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   nextMatches$: Observable<Match[]>;
-  lastMatch$: Observable<Match | null>;
+  lastMatch$: Observable<Match | null> = of(null);
   standings$: Observable<Team[]>;
   private teams: { [key: string]: string } = {};
 
@@ -223,9 +224,19 @@ export class HomeComponent implements OnInit {
     private teamService: TeamService
   ) {
     this.nextMatches$ = this.matchService.getNextMatches();
-    this.lastMatch$ = this.matchService.getLastMatch();
+    
     this.standings$ = this.teamService.getTeams().pipe(
-      map(teams => teams.sort((a, b) => (b.points || 0) - (a.points || 0)))
+      map(teams => teams.sort((a, b) => {
+        // Confronto per punti
+        const pointsDiff = (b.points || 0) - (a.points || 0);
+        if (pointsDiff !== 0) {
+          return pointsDiff;
+        }
+        // Confronto per differenza reti (goals fatti - goals subiti)
+        const goalDiffA = (a.goalsFor || 0) - (a.goalsAgainst || 0);
+        const goalDiffB = (b.goalsFor || 0) - (b.goalsAgainst || 0);
+        return goalDiffB - goalDiffA;
+      }))
     );
 
     // Carica i nomi delle squadre
@@ -236,7 +247,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.refreshLastMatch();
+  }
+  
+  refreshLastMatch(): void {
+    this.lastMatch$ = this.matchService.getLastMatch().pipe(
+      map(match => {
+        console.log("Ultima partita aggiornata:", match);
+        return match;
+      })
+    );
+  }
 
   getTeamName(teamId: string): string {
     return this.teams[teamId] || 'Squadra non trovata';
